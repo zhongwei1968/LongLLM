@@ -11,7 +11,7 @@ from typing import List, Any, Dict, Union, Tuple
 import numpy as np
 from copy import deepcopy
 from transformers.tokenization_utils import PreTrainedTokenizer, BatchEncoding
-
+print_first = True
 
 @dataclasses.dataclass
 class ChatTemplateOutput:
@@ -183,6 +183,12 @@ def apply_chat_template(template, messages, system_message=None, tokenizer:PreTr
 
     else:
         encoded = None
+
+    global print_first
+    if print_first:
+        # print first conversation
+        print_first = False
+        print(conversation, flush=True)
 
     return ChatTemplateOutput(raw=conversation, encoded=encoded)
 
