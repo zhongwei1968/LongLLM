@@ -11,7 +11,8 @@ from typing import List, Any, Dict, Union, Tuple
 import numpy as np
 from copy import deepcopy
 from transformers.tokenization_utils import PreTrainedTokenizer, BatchEncoding
-print_first = True
+import os
+print_first = True if os.getenv("PRINT_FIRST", "false") == "true" else False
 
 @dataclasses.dataclass
 class ChatTemplateOutput:
